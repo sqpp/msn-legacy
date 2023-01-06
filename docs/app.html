@@ -10,6 +10,37 @@
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <script src="https://unpkg.com/alpinejs" defer></script>
   <title>Windows Live Messenger</title>
+
+  <script type="text/javascript">
+async function sendSoundFile() {
+  const fileInput = document.getElementById('sound');
+  const file = fileInput.files[0];
+
+  // Read the file as ArrayBuffer
+  const fileReader = new FileReader();
+  fileReader.readAsArrayBuffer(file);
+  fileReader.onload = async function() {
+    const arrayBuffer = this.result;
+console.log(arrayBuffer)
+    try {
+      const response = await fetch('http://10.0.0.4:3000/sendSoundFile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/octet-stream',
+          'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwiaWF0IjoxNjczMDI3ODkwLCJleHAiOjE2NzMxMTQyOTB9.yhXs7vLqhL5Sbs34ZZDc6lEY3YCtJIQ8uQKGnsA43sg'
+        },
+        body: {
+          name: fileName,
+          buffer: arrayBuffer
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+}
+
+      </script>
 </head>
 
 <body class="bg-fixed bg-center bg-no-repeat bg-cover bg-xp">
@@ -94,6 +125,8 @@
                 <span class="inline-flex w-[3px] h-[3px] bg-gray-500"></span>
                 <p class="ml-2 text-sm">Well yeah... I rebuilt this app in HTML/CSS. Missed you too by the way &hearts;
                 </p>
+               
+
               </div>
             </div>
           </div>
@@ -119,6 +152,11 @@
           <span class="pb-2 text-xs text-gray-500/70">Last message received at: 2022. 07. 31. 19:08 </span>
           <textarea title="message" placeholder=""
             class="z-10 self-end w-full h-20 px-2 pt-1 bg-white border-t border-l border-r resize-none border-blue-700/50 focus:outline-none"></textarea>
+            <form action="javascript:sendSoundFile();" id="sendSoundAction">
+             
+<input type="file" id="sound" name="sound" value="Send Sound...">
+            <input type="submit" />
+</form>
           <div
             class="flex flex-row self-end justify-between w-full border h-7 bg-gradient-to-t from-sky-200 to-sky-50 border-blue-800/25">
             <div id="sendActions">
@@ -221,7 +259,7 @@
       <div class="overflow-y-scroll bg-white" id="main">
         <div class="hidden" x-data="{results: [], 'isLoading': true, numUsers: 0}"
           x-init="
-          fetch('https://raw.githubusercontent.com/sqpp/html-msn/main/public_html/data.json') .then(response=>
+          fetch('https://raw.githubusercontent.com/sqpp/msn-legacy/main/docs/data.jsonnnn') .then(response=>
           response.json())
         .then(response => { results = response; isLoading = false; numUsers = results.length; console.log(response); })">
 
@@ -242,6 +280,7 @@
 
 
           <template id="users" x-for="result in results" :key="result.id" class="">
+    
             <div id=" offline-user"
               class=" cursor-default flex flex-row items-center px-4 py-[2px;] mx-1 rounded-sm hover:from-sky-300/25 hover:to-sky-200/25 bg-gradient-to-t border border-white hover:border-sky-200 transition ease-in-out">
               <div class="w-2 h-2 border border-lime-700 rounded-sm shadow-sm bg-[#6AFF00]  relative z-0">

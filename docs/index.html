@@ -10,6 +10,31 @@
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <script src="https://unpkg.com/alpinejs" defer></script>
   <title>Windows Live Messenger</title>
+  <script type="text/javascript">
+
+async function register() {
+  try {
+    const response = await fetch('http://10.0.0.4:3000/register', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: 'user@example.com',
+        password: 'password123'
+      })
+    });
+    const data = await response.json();
+    localStorage.setItem('privateKey', data.encPrivate);
+    console.log(data.token)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+register();
+    
+  </script>
 </head>
 
 <body class="bg-fixed bg-center bg-no-repeat bg-cover bg-xp">
@@ -60,30 +85,34 @@
       <div class="relative h-12 bg-gradient-to-b from-blue-100 to-white">
         <h2 class="mt-12 text-xl text-center text-sky-900">Sign in</h2>
         <span class="mx-4 mt-2 text-xs break-all">Sign in with your Windows Live ID. Don't have one? <a href="#" class="text-sky-600">Sign up</a>.</span>
-        <div class="flex flex-col mx-16 mt-8 border border-gray-300 rounded">
-          <div class="flex flex-col justify-center mx-2 my-1 space-y-2 text-sm">
-            <input type="text" placeholder="Example555@hotmail.com" class="px-2 border border-gray-300 rounded-sm">
-            <input type="text" placeholder="Enter your password" class="px-2 border border-gray-300 rounded-sm">
-          </div>
-         
-          <div class="flex flex-col mx-4 mt-4 text-xs">
-            <span class="inline-flex items-center">Sign in as: 
-              
-              <div class="ml-2 mr-1 w-2 h-2 border border-lime-700 rounded-sm shadow-sm bg-[#6AFF00]  relative z-0">
-                <div class="absolute z-10 w-[4px] h-0.5 mx-[1px] mt-[2.5px] blur-[1px] bg-green-800"></div>
-
-              </div>
-              Available    <span class="text-[6px] ml-2"> &#x25BC;</span></span>
-            
-            <div class="flex flex-col mt-4 space-y-3">
-              <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember Me</span>
-              <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember my password</span>
-              <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Sign me in automatically</span>
+        <form action="" method="post">
+          <div class="flex flex-col mx-16 mt-8 border border-gray-300 rounded">
+          
+            <div class="flex flex-col justify-center mx-2 my-1 space-y-2 text-sm">
+              <input type="text" placeholder="Example555@hotmail.com" class="px-2 border border-gray-300 rounded-sm">
+              <input type="text" placeholder="Enter your password" class="px-2 border border-gray-300 rounded-sm">
             </div>
-            <span class="mt-1 mb-1 text-sky-600">Forgot your password?</span>
-            
+           
+            <div class="flex flex-col mx-4 mt-4 text-xs">
+              <span class="inline-flex items-center">Sign in as: 
+                
+                <div class="ml-2 mr-1 w-2 h-2 border border-lime-700 rounded-sm shadow-sm bg-[#6AFF00]  relative z-0">
+                  <div class="absolute z-10 w-[4px] h-0.5 mx-[1px] mt-[2.5px] blur-[1px] bg-green-800"></div>
+  
+                </div>
+                Available    <span class="text-[6px] ml-2"> &#x25BC;</span></span>
+              
+              <div class="flex flex-col mt-4 space-y-3">
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember Me</span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember my password</span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Sign me in automatically</span>
+              </div>
+              <span class="mt-1 mb-1 text-sky-600">Forgot your password?</span>
+              
+            </div>
           </div>
-        </div>
+        </form>
+       
 
         <div class="flex justify-center my-3">
           <button class="self-center w-24 py-1 text-xs border border-blue-500 rounded-md bg-gradient-to-t from-gray-300 to-gray-50 hover:from-blue-300/50 hover:to-blue-50 hover:border-black">Sign in</button>
