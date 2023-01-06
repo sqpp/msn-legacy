@@ -49,7 +49,7 @@ register();
       class="grid h-[55rem] mt-4 grid-rows-[auto_1fr_auto] relative w-96 rounded-md shadow-md disabled:animate-nudge bg-white  md:w-[22rem] shadow-black"
       disabled>
       <div id="msn-header"
-        class="relative flex flex-col h-32 bg-cover bg-gradient-to-b from-sky-500 to-blue-100 rounded-t-md "
+        class="relative z-50 flex flex-col h-32 rounded-t-md "
         >
         <div id="window-nav" class="flex flex-row items-center justify-between bg-white border-b border-blue-500">
           <div id="app-title" class="flex flex-row items-center mx-2 text-black">
@@ -79,18 +79,20 @@ register();
 
          
         </div>
+        
 
 
       </div>
-      <div class="relative h-12 bg-gradient-to-b from-blue-100 to-white">
+      <img src="./images/header.svg" class="absolute z-0 mt-7 "/ >
+      <div class="relative h-12 bg-gradient-to-b to-white">
         <h2 class="mt-12 text-xl text-center text-sky-900">Sign in</h2>
         <span class="mx-4 mt-2 text-xs break-all">Sign in with your Windows Live ID. Don't have one? <a href="#" class="text-sky-600">Sign up</a>.</span>
         <form action="" method="post">
           <div class="flex flex-col mx-16 mt-8 border border-gray-300 rounded">
           
-            <div class="flex flex-col justify-center mx-2 my-1 space-y-2 text-sm">
-              <input type="text" placeholder="Example555@hotmail.com" class="px-2 border border-gray-300 rounded-sm">
-              <input type="text" placeholder="Enter your password" class="px-2 border border-gray-300 rounded-sm">
+            <div class="flex flex-col justify-center mx-1 my-1 space-y-2 text-sm">
+              <input type="text" placeholder="Example555@hotmail.com" class="placeholder:text-gray-500 px-1.5 py-[3px] text-xs border focus:outline-none border-gray-300 rounded-sm">
+              <input type="text" placeholder="Enter your password" class="placeholder:text-gray-500 px-1.5 py-1 text-xs border hover:border-t-sky-900/50 hover:border-l-sky-900/50 hover:border-r-sky-900/50 focus:outline-none border-gray-300 rounded-sm">
             </div>
            
             <div class="flex flex-col mx-4 mt-4 text-xs">
@@ -103,9 +105,9 @@ register();
                 Available    <span class="text-[6px] ml-2"> &#x25BC;</span></span>
               
               <div class="flex flex-col mt-4 space-y-3">
-                <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember Me</span>
-                <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember my password</span>
-                <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Sign me in automatically</span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="rememberme"> <label class="select-none " for="rememberme">Remember me</label> </span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="rememberpass"><label class="select-none " for="rememberpass">Remember my password</label> </span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="signauto"><label class="select-none " for="signauto">Sign me in automatically</label> </span>
               </div>
               <span class="mt-1 mb-1 text-sky-600">Forgot your password?</span>
               
@@ -121,14 +123,14 @@ register();
       </div>
 
 
-      <div class="absolute bottom-0">
-        <ul class="flex m-2 space-x-2 text-xs">
-          <li><a class="text-blue-600">Privacy statement</a></li>
+      <div class="absolute bottom-0 ">
+        <ul class="flex m-2 space-x-2 text-xs text-sky-700">
+          <li><a>Privacy statement</a></li>
           <li>| </li>
-          <li><a class="text-blue-600">Server Status</a></li>
+          <li><a>Server Status</a></li>
         </ul>
       </div>
-     
+     <div class="block w-full h-64 bg-cover bg-gradient-to-t from-sky-200 to-white"></div>
     </div>
 
 
