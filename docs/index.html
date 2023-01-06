@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class=" scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/spotify.js"></script>
+  <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <title>Windows Live Messenger</title>
+</head>
+
+<body class="bg-fixed bg-center bg-no-repeat bg-cover bg-xp">
+  <div id="container" class="flex flex-row justify-center">
+    <audio autoplay>
+      <source src="./snd/message.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
+   
+    <div id="msn-app"
+      class="grid h-[55rem] mt-4 grid-rows-[auto_1fr_auto] relative w-96 rounded-md shadow-md disabled:animate-nudge bg-white  md:w-[22rem] shadow-black"
+      disabled>
+      <div id="msn-header"
+        class="relative flex flex-col h-32 bg-cover bg-gradient-to-b from-sky-500 to-blue-100 rounded-t-md "
+        >
+        <div id="window-nav" class="flex flex-row items-center justify-between bg-white border-b border-blue-500">
+          <div id="app-title" class="flex flex-row items-center mx-2 text-black">
+            <img src="images/icon.png" alt="msn icon" class="h-5 mr-1" />
+            <span class="text-sm cursor-default">Windows Live Messenger</span>
+          </div>
+          <div class="flex flex-row items-center justify-center text-white cursor-default h-7">
+            <div class="inline-flex justify-center w-10 h-full text-center text-black hover:bg-gray-200">
+              _
+            </div>
+            <div class="inline-flex justify-center w-10 h-full text-center text-black hover:bg-gray-200">
+              &#9633;
+            </div>
+            <div
+              class="inline-flex justify-center w-10 h-full text-center text-black hover:bg-red-400 hover:text-white">
+              x
+            </div>
+          </div>
+        </div>
+        <div id="user" class="flex flex-col items-center justify-center pt-6 pb-4 mx-3">
+          <div id="user-avatar"
+            class="z-50 flex items-center justify-center p-1 border shadow-sm cursor-pointer border-sky-300 w-30 rounded-2xl bg-gradient-to-t from-sky-300/50 to-green-100/50 shadow-gray-700">
+            <div class="flex flex-row border-gray-50 rounded-">
+              <img src="images/avatar.jpg" class="w-24 h-24 border border-gray-500 rounded-md" alt="user" />
+            </div>
+          </div>
+
+         
+        </div>
+
+
+      </div>
+      <div class="relative h-12 bg-gradient-to-b from-blue-100 to-white">
+        <h2 class="mt-12 text-xl text-center text-sky-900">Sign in</h2>
+        <span class="mx-4 mt-2 text-xs break-all">Sign in with your Windows Live ID. Don't have one? <a href="#" class="text-sky-600">Sign up</a>.</span>
+        <div class="flex flex-col mx-16 mt-8 border border-gray-300 rounded">
+          <div class="flex flex-col justify-center mx-2 my-1 space-y-2 text-sm">
+            <input type="text" placeholder="Example555@hotmail.com" class="px-2 border border-gray-300 rounded-sm">
+            <input type="text" placeholder="Enter your password" class="px-2 border border-gray-300 rounded-sm">
+          </div>
+         
+          <div class="flex flex-col mx-4 mt-4 text-xs">
+            <span class="inline-flex items-center">Sign in as: 
+              
+              <div class="ml-2 mr-1 w-2 h-2 border border-lime-700 rounded-sm shadow-sm bg-[#6AFF00]  relative z-0">
+                <div class="absolute z-10 w-[4px] h-0.5 mx-[1px] mt-[2.5px] blur-[1px] bg-green-800"></div>
+
+              </div>
+              Available    <span class="text-[6px] ml-2"> &#x25BC;</span></span>
+            
+            <div class="flex flex-col mt-4 space-y-3">
+              <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember Me</span>
+              <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Remember my password</span>
+              <span class="inline-flex items-center"><input type="checkbox" class="mr-1"> Sign me in automatically</span>
+            </div>
+            <span class="mt-1 mb-1 text-sky-600">Forgot your password?</span>
+            
+          </div>
+        </div>
+
+        <div class="flex justify-center my-3">
+          <button class="self-center w-24 py-1 text-xs border border-blue-500 rounded-md bg-gradient-to-t from-gray-300 to-gray-50 hover:from-blue-300/50 hover:to-blue-50 hover:border-black">Sign in</button>
+        </div>
+
+      </div>
+
+
+      <div class="absolute bottom-0">
+        <ul class="flex m-2 space-x-2 text-xs">
+          <li><a class="text-blue-600">Privacy statement</a></li>
+          <li>| </li>
+          <li><a class="text-blue-600">Server Status</a></li>
+        </ul>
+      </div>
+     
+    </div>
+
+
+  </div>
+</body>
+
+</html>

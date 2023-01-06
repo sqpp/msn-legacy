@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer utilities {
+  .text-shadow-white {
+    text-shadow: 1px 1px 5px #fff, 0px 0px 5px #fff, 0px 0px 5px #fff;
+  }
+
+  .text-shadow-blue {
+    text-shadow: 6px 6px 2px #3b82f6;
+  }
+}
+
+[x-cloak] {
+  display: none !important;
+}
