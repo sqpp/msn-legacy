@@ -10,31 +10,21 @@
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <script src="https://unpkg.com/alpinejs" defer></script>
   <title>Windows Live Messenger</title>
-  <script type="text/javascript">
 
-async function register() {
-  try {
-    const response = await fetch('http://10.0.0.4:3000/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        email: 'user@example.com',
-        password: 'password123'
-      })
-    });
-    const data = await response.json();
-    localStorage.setItem('privateKey', data.encPrivate);
-    console.log(data.token)
-  } catch (error) {
-    console.log(error)
-  }
-}
-
-register();
-    
+  <script>
+    function allowDrop(event) {
+      event.preventDefault();
+    }
+    function drag(event) {
+      event.dataTransfer.setData("Text", event.target.id);
+    }
+    function drop(event) {
+      var data = event.dataTransfer.getData("Text");
+      event.target.appendChild(document.getElementById(data));
+      event.preventDefault();
+    }
   </script>
+
 </head>
 
 <body class="bg-fixed bg-center bg-no-repeat bg-cover bg-xp">
@@ -44,13 +34,11 @@ register();
       Your browser does not support the audio element.
     </audio>
 
-   
-    <div id="msn-app"
+
+    <div id="msn-app" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)"
       class="grid h-[55rem] mt-4 grid-rows-[auto_1fr_auto] relative w-96 rounded-md shadow-md disabled:animate-nudge bg-white  md:w-[22rem] shadow-black"
       disabled>
-      <div id="msn-header"
-        class="relative z-50 flex flex-col h-32 rounded-t-md "
-        >
+      <div id="msn-header" class="relative z-50 flex flex-col h-32 rounded-t-md ">
         <div id="window-nav" class="flex flex-row items-center justify-between bg-white border-b border-blue-500">
           <div id="app-title" class="flex flex-row items-center mx-2 text-black">
             <img src="images/icon.png" alt="msn icon" class="h-5 mr-1" />
@@ -58,14 +46,14 @@ register();
           </div>
           <div class="flex flex-row items-center justify-center text-white cursor-default h-7">
             <div class="inline-flex justify-center w-10 h-full text-center text-black hover:bg-gray-200">
-              _
+              <svg class="self-end w-3 h-6 pt-3 pb-2 " x="0px" y="0px" viewBox="0 0 10.2 1"><rect x="0" y="50%" width="10.2" height="1" /></svg>
             </div>
             <div class="inline-flex justify-center w-10 h-full text-center text-black hover:bg-gray-200">
-              &#9633;
+              <svg class="self-end w-3 py-2.5 h-7 "viewBox="0 0 10 10"><path d="M0,0v10h10V0H0z M9,9H1V1h8V9z" /></svg>
             </div>
             <div
-              class="inline-flex justify-center w-10 h-full text-center text-black hover:bg-red-400 hover:text-white">
-              x
+              class="inline-flex justify-center w-10 h-full text-center text-black hover:bg-red-600 hover:text-white">
+              <svg class="self-end w-3 py-2.5 h-7 fill-current" viewBox="0 0 10 10"><polygon points="10.2,0.7 9.5,0 5.1,4.4 0.7,0 0,0.7 4.4,5.1 0,9.5 0.7,10.2 5.1,5.8 9.5,10.2 10.2,9.5 5.8,5.1" /></svg>
             </div>
           </div>
         </div>
@@ -77,48 +65,59 @@ register();
             </div>
           </div>
 
-         
+
         </div>
-        
+
 
 
       </div>
-      <img src="./images/header.svg" class="absolute z-0 mt-7 "/ >
+      <img src="./images/header.svg" class="absolute z-0 mt-7 " />
       <div class="relative h-12 bg-gradient-to-b to-white">
-        <h2 class="mt-12 text-xl text-center text-sky-900">Sign in</h2>
-        <span class="mx-4 mt-2 text-xs break-all">Sign in with your Windows Live ID. Don't have one? <a href="#" class="text-sky-600">Sign up</a>.</span>
-        <form action="" method="post">
+        <h2 class="mt-12 text-xl text-center cursor-default text-sky-900">Sign in</h2>
+        <span class="mx-4 mt-2 text-xs break-all cursor-default">Sign in with your Windows Live ID. Don't have one? <a href="#"
+            class="text-sky-600">Sign up</a>.</span>
+        <form id="register-form" action="" method="post">
           <div class="flex flex-col mx-16 mt-8 border border-gray-300 rounded">
-          
+
             <div class="flex flex-col justify-center mx-1 my-1 space-y-2 text-sm">
-              <input type="text" placeholder="Example555@hotmail.com" class="placeholder:text-gray-500 px-1.5 py-[3px] text-xs border focus:outline-none border-gray-300 rounded-sm">
-              <input type="text" placeholder="Enter your password" class="placeholder:text-gray-500 px-1.5 py-1 text-xs border hover:border-t-sky-900/50 hover:border-l-sky-900/50 hover:border-r-sky-900/50 focus:outline-none border-gray-300 rounded-sm">
+              <input id="login" type="email" value="guest@hello.id"placeholder="Example555@hotmail.com" selected disabled
+                class="select-none disabled:opacity-40 disabled:cursor-default  placeholder:text-gray-500 px-1.5 py-[3px] text-xs border focus:outline-none border-gray-300 rounded-sm" autocomplete="email">
+              <input id="password" type="password" placeholder="Enter your password"
+                class="placeholder:text-gray-500 px-1.5 py-1 text-xs border hover:border-t-sky-900/50 hover:border-l-sky-900/50 hover:border-r-sky-900/50 focus:outline-none border-gray-300 rounded-sm" autocomplete="current-password">
             </div>
-           
+
             <div class="flex flex-col mx-4 mt-4 text-xs">
-              <span class="inline-flex items-center">Sign in as: 
-                
+              <span class="inline-flex items-center cursor-default">Sign in as:
+
                 <div class="ml-2 mr-1 w-2 h-2 border border-lime-700 rounded-sm shadow-sm bg-[#6AFF00]  relative z-0">
                   <div class="absolute z-10 w-[4px] h-0.5 mx-[1px] mt-[2.5px] blur-[1px] bg-green-800"></div>
-  
+
                 </div>
-                Available    <span class="text-[6px] ml-2"> &#x25BC;</span></span>
-              
+                Available <span class="text-[6px] ml-2"> &#x25BC;</span>
+              </span>
+
               <div class="flex flex-col mt-4 space-y-3">
-                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="rememberme"> <label class="select-none " for="rememberme">Remember me</label> </span>
-                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="rememberpass"><label class="select-none " for="rememberpass">Remember my password</label> </span>
-                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="signauto"><label class="select-none " for="signauto">Sign me in automatically</label> </span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="rememberme"> <label
+                    class="select-none " for="rememberme">Remember me</label> </span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="rememberpass"><label
+                    class="select-none " for="rememberpass">Remember my password</label> </span>
+                <span class="inline-flex items-center"><input type="checkbox" class="mr-1" id="signauto"><label
+                    class="select-none " for="signauto">Sign me in automatically</label> </span>
               </div>
-              <span class="mt-1 mb-1 text-sky-600">Forgot your password?</span>
-              
+              <span class="py-2 cursor-pointer text-sky-600">Forgot your password?</span>
+
             </div>
           </div>
-        </form>
-       
 
-        <div class="flex justify-center my-3">
-          <button class="self-center w-24 py-1 text-xs border border-blue-500 rounded-md bg-gradient-to-t from-gray-300 to-gray-50 hover:from-blue-300/50 hover:to-blue-50 hover:border-black">Sign in</button>
-        </div>
+          <div class="flex justify-center my-3">
+            <button id="register-button"
+            type="submit" class="self-center w-24 py-1 text-xs border border-blue-500 rounded-md disabled:opacity-25 disabled:cursor-not-allowed disabled:border-blue-500 bg-gradient-to-t from-gray-300 to-gray-50 hover:from-blue-300/50 hover:to-blue-50 hover:border-black">Sign
+              in</button>
+          </div>
+        </form>
+
+
+       
 
       </div>
 
@@ -130,11 +129,51 @@ register();
           <li><a>Server Status</a></li>
         </ul>
       </div>
-     <div class="block w-full h-64 bg-cover bg-gradient-to-t from-sky-200 to-white"></div>
+      <div class="block w-full h-64 bg-cover bg-gradient-to-t from-sky-200 to-white"></div>
     </div>
 
 
   </div>
+
+  <!-- WinXP Static Bar -->
+  <div class="absolute bottom-0 flex w-full h-12 bg-blue-600 ">
+    <div class="relative flex flex-row items-center justify-center w-32 bg-green-500 border-2 border-green-700 shadow-md cursor-pointer group hover:bg-green-400">
+
+      <div class="absolute top-0 block w-full h-4 bg-gradient-to-b from-green-800 to-green-500 group-hover:from-green-700 group-hover:to-green-400"> </div>
+
+      <div class="flex items-center italic font-bold text-white">
+        <!-- Windows Logo -->
+        <svg class="inline-block w-8 h-8 drop-shadow-lg shadow-black" id="esCZGKTwa4A1"
+          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 48 48"
+          shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
+          <g transform="translate(-37.561499-989.696136)">
+            <g>
+              <path
+                d="M84.393,999.07c-8.8498,3.659-13.105,1.602-16.94-.97894l-4.3658,15.143c3.8313,2.5957,8.4568,4.7299,16.947.9287Z"
+                fill="#91c300" stroke-width="0.26821" />
+              <path
+                d="M55.623,1029.5c-3.8436-2.5869-8.0221-4.7146-16.893-1.0466l4.3436-15.172c8.8726-3.6686,13.135-1.5925,16.975,1.0102l-4.4257,15.208Z"
+                fill="#00b4f1" stroke-width="0.26821" />
+              <path
+                d="M60.787,1011.6c-2.314-1.5582-4.8027-3.0127-8.3372-3.0395-2.332-.018-5.1079.6445-8.632,2.1016l4.3673-15.133c8.8666-3.6662,13.125-1.5913,16.963,1.0095Z"
+                fill="#f8682c" stroke-width="0.26821" />
+              <path
+                d="M62.351,1015.8c3.8389,2.5847,8.103,4.6435,16.962.9816l-4.3667,15.083c-8.8608,3.6646-13.116,1.5893-16.951-1.0112Z"
+                fill="#ffc300" stroke-width="0.26821" />
+            </g>
+          </g>
+        </svg>
+        <span class="pl-2 drop-shadow-lg shadow-black outline-1 outline-black">START</span>
+
+      </div>
+    </div>
+    <div class="relative flex w-full h-12 bg-blue-600">
+      <div class="absolute top-0 flex w-full h-2 bg-gradient-to-b from-blue-800 to-blue-600"> </div>
+    </div>
+  </div>
+
+
+
 </body>
 
 </html>

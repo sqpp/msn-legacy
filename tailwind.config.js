@@ -13,7 +13,7 @@ module.exports = {
         },
       },
       animation: {
-        nudge: "nudge 0.3s ease-out infinite",
+        nudge: "nudge 0.3s ease-out 5s",
       },
       backgroundImage: {
         xp: "url('../images/winxp.jpg')",
