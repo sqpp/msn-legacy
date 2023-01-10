@@ -138,97 +138,96 @@
               d="M18,8H17V7A5,5,0,0,0,7,7V8H6a2,2,0,0,0-2,2V20a2,2,0,0,0,2,2H18a2,2,0,0,0,2-2V10A2,2,0,0,0,18,8ZM9,7a3,3,0,0,1,6,0V8H9Z" />
           </svg>
         </a><input type="text" class="w-auto px-4 text-gray-500 rounded-md lg:w-full "
-          value="https://bluecoffee.com/register" readonly aria-readonly="true" disabled>
+          value="https://signup.live.com/register" readonly aria-readonly="true" disabled>
       </div>
     </div>
-    <div id="window" class="flex flex-col h-full mx-4 mb-4 bg-white ">
+    <div id="window" class="flex flex-col h-full mx-4 mb-4 bg-white " style="background-image: url(./images/default_final_ltr.jpg); background-repeat: no-repeat;" >
       <!-- Actual Browser Content .... -->
 
-      <div id="header" class="relative h-40" style="background-image: url(./images/default_final_ltr.jpg);">
+      <div class="relative flex flex-col w-full h-full max-w-5xl mx-auto">
+        <div id="header" class="relative flex justify-between h-24 py-4 mx-10" >
 
-        <div id="logo" class="flex items-center px-10 " id="">
-          <svg class="w-16 h-20" fill="#000000" width="800px" height="800px" viewBox="0 0 24 24"
-            id="coffee-beans-left-1" data-name="Flat Line" xmlns="http://www.w3.org/2000/svg" class="icon flat-line">
-            <ellipse id="secondary" cx="14.5" cy="14.5" rx="6.93" ry="4.94"
-              transform="translate(-5.28 9.11) rotate(-29.75)" style="fill: rgb(59,130,246); stroke-width: 2;">
-            </ellipse>
-            <path id="primary" d="M11.9,10.31a5.64,5.64,0,0,0-2.61-.94C8,9.17,6.77,9.06,4,6"
-              style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-            </path>
-            <path id="primary-2" data-name="primary"
-              d="M8.19,14.35A10.48,10.48,0,0,1,7,13.78C3.7,11.87,2.12,8.4,3.49,6S8.66,3.31,12,5.22a8.54,8.54,0,0,1,3.49,3.64"
-              style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-            </path>
-            <ellipse id="primary-3" data-name="primary" cx="14.5" cy="14.5" rx="6.93" ry="4.94"
-              transform="translate(-5.28 9.11) rotate(-29.75)"
-              style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-            </ellipse>
-            <path id="primary-4" data-name="primary" d="M9,18c6.16-6.44,5.51-.95,11-7"
-              style="fill: none; stroke: rgb(0, 0, 0); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;">
-            </path>
-          </svg>
-          <span class="ml-2 text-lg font-black text-blue-500 uppercase">Blue Coffee</span>
+          <div id="logo" class="" id="">
+            <img class="w-32 h-8" src="./images/windowslive.svg" alt="Windows Live Logo"/>
+          </div>
+  
+          <div>
+            <a href="#signin" >Sign In</a>
+          </div>
+  
         </div>
-      </div>
-
-
-      <div class="p-8 overflow-hidden" id="container">
-        <p class="mt-12 text-xl font-bold">Create your Hello ID Account</p>
-
-        <form id="register-form" class="flex flex-col gap-2 my-8">
-
-          <div class="flex flex-row items-center">
-            <input id="emailAddress" placeholder="Username" type="text" autocomplete="nickname"
-              class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
-            <span class="mx-2">@</span>
-            <input id="coffee.id" value="coff.ee" type="text"
-              class="w-20 py-1 text-center bg-gray-100 opacity-50 cursor-default select-none " disabled>
-          </div>
-
-          <div class="flex flex-row items-center">
-            <input id="password" type="password" placeholder="Password" autocomplete="new-password"
-              class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
-          </div>
-
-          <div class="flex flex-row items-center">
-            <input id="password-confirm" type="password" placeholder="Confirm Password" autocomplete="new-password"
-              class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
-          </div>
-
-          <div class="flex flex-row items-center">
-            <input id="real-email" type="real-email" placeholder="Real email address" autocomplete="email"
-              class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
-          </div>
-
-          <div class="flex flex-row items-center">
-            <input id="tos" class="px-2 py-1 mx-2 bg-gray-100 focus:outline-none" type="checkbox" />
-            <label for="tos">I agree with the <a class="text-blue-400" href="#">Terms of Service </a> and <a href="#"
-                class="text-blue-400">Privacy Policy</a></label>
-          </div>
-
-          <div class="flex flex-row items-center">
-            <button id="register" type="submit"
-              class="px-8 py-1 mx-2 text-white bg-blue-500 rounded-md disabled:bg-blue-500/25 disabled:cursor-not-allowed">Register</button>
-          </div>
-
-          <div id="errors" class="w-48 px-4 text-red-600"></div>
-        </form>
-
-        <div id="intro" class="pt-4 italic">
-          <p class="font-bold type">RELIVE THE HISTORY OF MSN... </p>
-          <p class="type">Chat with your friends... </p>
-          <p class="type">Make your friends annoyed with nudges... </p>
-          <p class="type">Post status messages how bored you are... </p>
-          <p class="mt-5 font-bold type">FINALLY..</p>
-          <p class="type">Do something new...</p>
-          <p class="type">Use it in the web browser...</p>
-          <p class="type">Share songs you listen to with Spotify...</p>
-          <p class="type">Use hardware keys to login...</p>
-          <p class="mt-8 type">and more...</p>
+  
+  
+        <div class="mx-10 overflow-hidden" id="container ">
+          <p class="mt-2 text-xl font-medium">Create your Windows Live ID</p>
+          <hr class="my-3">
+          <form id="register-form" class="flex flex-col gap-2 my-8">
+  
+            <div class="flex flex-row items-center">
+              <input id="emailAddress" placeholder="Username" type="text" autocomplete="nickname"
+                class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
+              <span class="mx-2">@</span>
+              <input id="windowslive.com" value="windowslive.com" type="text"
+                class="py-1 text-center bg-gray-100 opacity-50 cursor-default select-none " disabled>
+            </div>
+  
+            <div class="flex flex-row items-center">
+              <input id="password" type="password" placeholder="Password" autocomplete="new-password"
+                class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
+            </div>
+  
+            <div class="flex flex-row items-center">
+              <input id="password-confirm" type="password" placeholder="Confirm Password" autocomplete="new-password"
+                class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
+            </div>
+  
+            <div class="flex flex-row items-center">
+              <input id="real-email" type="real-email" placeholder="Real email address" autocomplete="email"
+                class="py-1 pl-2 ml-2 bg-gray-100 focus:outline-none">
+            </div>
+  
+            <div class="flex flex-row items-center mt-5">
+              <input id="tos" class="px-2 py-1 mx-2 bg-gray-100 focus:outline-none" type="checkbox" />
+              <label for="tos">I agree with the <a class="text-blue-400" href="#">Terms of Service </a> and <a href="#"
+                  class="text-blue-400">Privacy Policy</a>.</label>
+            </div>
+  
+            <div class="flex flex-row items-center">
+              <button id="register" type="submit"
+                class="px-8 py-1 mx-2 text-white bg-blue-500 rounded-md disabled:bg-blue-500/25 disabled:cursor-not-allowed">Register</button>
+            </div>
+  
+            <div id="errors" class="w-48 px-4 text-red-600"></div>
+          </form>
+  
+        
         </div>
 
-      </div>
+        <div id="footer" class="absolute bottom-0 flex flex-col items-center justify-center w-full px-10 pb-10 ">
 
+        <span class="pr-5 text-gray-600">© 2023 Weend Live</span>
+
+        <div class="flex flex-row justify-between w-full">
+          <div>
+            <ul class="flex gap-5">
+              <li>Terms</li>
+              <li>Privacy</li>
+              <li>About us</li>
+            </ul>
+          </div>
+          
+          <div>
+            <ul class="flex gap-5">
+              <li>Help Center</li>
+              <li>Feedback</li>
+            </ul>
+          </div>
+        </div>
+        
+        </div>
+  
+      </div>
+      
 
 
 

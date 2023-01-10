@@ -1,43 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" class=" scroll-smooth">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/styles.css">
   <script src="js/spotify.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
   <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
   <script src="https://unpkg.com/alpinejs" defer></script>
   <title>Windows Live Messenger</title>
-
-  <script>
-    function allowDrop(event) {
-      event.preventDefault();
-    }
-    function drag(event) {
-      event.dataTransfer.setData("Text", event.target.id);
-    }
-    function drop(event) {
-      var data = event.dataTransfer.getData("Text");
-      event.target.appendChild(document.getElementById(data));
-      event.preventDefault();
-    }
-  </script>
-
 </head>
 
-<body class="bg-fixed bg-center bg-no-repeat bg-cover bg-xp">
-  <div id="container" class="flex flex-row justify-center">
+<body class="overflow-hidden bg-fixed bg-center bg-no-repeat bg-cover bg-xp">
+  <div id="container" class="" id="target" >
     <audio autoplay>
       <source src="./snd/message.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
 
-
-    <div id="msn-app" draggable="true" ondrop="drop(event)" ondragover="allowDrop(event)" ondragstart="drag(event)"
-      class="grid h-[55rem] mt-4 grid-rows-[auto_1fr_auto] relative w-96 rounded-md shadow-md disabled:animate-nudge bg-white  md:w-[22rem] shadow-black"
-      disabled>
+    <div id="msn-app"
+      class="cursor-default grid h-[55rem] mt-4 grid-rows-[auto_1fr_auto] relative w-96 rounded-md shadow-md disabled:animate-nudge bg-white md:w-[22rem] shadow-black"
+      style=>
       <div id="msn-header" class="relative z-50 flex flex-col h-32 rounded-t-md ">
         <div id="window-nav" class="flex flex-row items-center justify-between bg-white border-b border-blue-500">
           <div id="app-title" class="flex flex-row items-center mx-2 text-black">
@@ -172,7 +156,87 @@
     </div>
   </div>
 
+  <script>
+     function set_draggable(){
+    var savedTop = localStorage.getItem('top');
+    var savedLeft = localStorage.getItem('left');
+    var draggable_element = $('#msn-app');
+    if (savedTop && savedLeft) {
+        draggable_element.offset({top: savedTop, left: savedLeft});
+    }
+    draggable_element.drags();
+  }
+  document.addEventListener("DOMContentLoaded", set_draggable);
+(function($) {
+    $.fn.drags = function(opt) {
 
+        opt = $.extend({handle:"",cursor:"default"}, opt);
+
+         var $el = (opt.handle === "") ? this : this.find(opt.handle);
+         
+        return $el.css('cursor', opt.cursor).on("mousedown", function(e) {
+            if(opt.handle === "") {
+                var $drag = $(this).addClass('draggable');
+            } else {
+                var $drag = $(this).parent().addClass('draggable');
+            }
+            var z_idx = $drag.css('z-index'),
+                drg_h = $drag.outerHeight(),
+                drg_w = $drag.outerWidth(),
+                pos_y = $drag.offset().top + drg_h - e.pageY,
+                pos_x = $drag.offset().left + drg_w - e.pageX;
+                
+            // Get the last saved position from local storage
+            var savedTop = localStorage.getItem('top');
+            var savedLeft = localStorage.getItem('left');
+            if (savedTop && savedLeft) {
+               setTimeout(function(){
+                 $drag.offset({top: savedTop, left: savedLeft});
+               }, 50);
+            }
+            $drag.css('z-index', 1000).parents().on("mousemove", function(e) {
+                // Check the position of the element on mousemove
+                var top = e.pageY + pos_y - drg_h,
+                    left = e.pageX + pos_x - drg_w;
+
+                // Check if the element is within the viewable area
+                if (top < 0) {
+                    top = 0;
+                } else if (top + drg_h > window.innerHeight) {
+                    top = window.innerHeight - drg_h;
+                }
+
+                if (left < 0) {
+                    left = 0;
+                } else if (left + drg_w > window.innerWidth) {
+                    left = window.innerWidth - drg_w;
+                }
+
+                $('.draggable').offset({
+                    top: top,
+                    left: left
+                });
+            }).on("mouseup", function() {
+                $drag.removeClass('draggable').css('z-index', z_idx);
+                // Save the current position to local storage
+                localStorage.setItem('top', $drag.offset().top);
+                localStorage.setItem('left', $drag.offset().left);
+            });
+            e.preventDefault(); // disable selection
+        }).on("mouseup", function() {
+            if(opt.handle === "") {
+                $(this).removeClass('draggable');
+            } else {
+                $(this).parent().removeClass('draggable');
+            }
+        });
+
+    }
+})(jQuery);
+
+$('#msn-app').drags();
+
+      </script>
 
 </body>
 
